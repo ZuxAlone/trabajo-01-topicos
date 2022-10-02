@@ -9,23 +9,34 @@ public class Figure {
     protected int width;
     protected int height;
     protected int radius;
+    protected int xSpeed;
+    protected int ySpeed;
     protected Color color = Color.WHITE;
 
-    public Figure(int x, int y, int width, int height) {
+    public Figure(int x, int y, int width, int height, int xSpeed, int ySpeed) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
     }
 
-    public Figure(int x, int y, int radius) {
+    public Figure(int x, int y, int radius, int xSpeed, int ySpeed) {
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
     }
 
     public void draw(ShapeRenderer shapeRenderer) {
         shapeRenderer.setColor(color);
+    }
+
+    public void update() {
+        x += xSpeed;
+        y += ySpeed;
     }
 
     public int getX() {

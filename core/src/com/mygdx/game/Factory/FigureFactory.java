@@ -8,9 +8,11 @@ import com.mygdx.game.GameObjects.Square;
 import com.mygdx.game.Interfaces.IFactory;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class FigureFactory implements IFactory {
     private ArrayList<Figure> figures;
+    private Random r = new Random();
 
     public FigureFactory() {
         figures = new ArrayList<>();
@@ -27,16 +29,17 @@ public class FigureFactory implements IFactory {
     }
 
     private Figure buildSquare() {
-        return new Square(0, 0, 20, 20);
+        return new Square(0, 0, 20, 20, r.nextInt(15), r.nextInt(15));
     }
 
     private Figure buildCircle() {
-        return new Circle(0, 0, 10);
+        return new Circle(0, 0, 10, r.nextInt(15), r.nextInt(15));
     }
 
     @Override
     public void render(ShapeRenderer shapeRenderer) {
         for (Figure figure : figures) {
+            figure.update();
             figure.draw(shapeRenderer);
         }
     }
